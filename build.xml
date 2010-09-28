@@ -1,0 +1,16 @@
+<project name="MusicXML" default="validateMusicXML">
+  <!-- validate MusicXML files against the DTD-->
+  <target name="validateMusicXMLDTD">
+        <xmlvalidate>
+            <fileset dir="." includes="musicxml/*.xml"/>
+        </xmlvalidate>
+  </target>
+
+  <!-- validate MusicXML files against schema -->
+  <target name="validateMusicXML">
+      <schemavalidate noNamespaceFile="musicxml_schema/musicxml.xsd">
+            <fileset dir="." includes="musicxml/*.xml"/>
+      </schemavalidate>
+  </target>
+  
+</project>

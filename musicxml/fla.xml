@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 2.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise>
+	<work>
+		<work-title>fla</work-title>
+	</work>
+	<identification>
+		<encoding>
+			<software>nl2xml v 0.9 : Nightingale Notelist to MusicXML translator.  Notelist file version 2</software>
+		</encoding>
+	</identification>
+	<part-list>
+		<score-part id="P1">
+			<part-name>Part 1</part-name>
+		</score-part>
+		<score-part id="P2">
+			<part-name>Part 2</part-name>
+		</score-part>
+		<score-part id="P3">
+			<part-name>Part 3</part-name>
+		</score-part>
+		<score-part id="P4">
+			<part-name>Part 4</part-name>
+		</score-part>
+	</part-list>
+	<part id="P1">
+		<measure number="1">
+			<attributes>
+				<divisions>32</divisions>
+				<time>
+					<beats>4</beats>
+					<beat-type>4</beat-type>
+				</time>
+				<clef number="1">
+					<sign>G</sign>
+					<line>2</line>
+				</clef>
+			</attributes>
+			<note>
+				<pitch>
+					<step>G</step>
+					<octave>5</octave>
+				</pitch>
+				<duration>128</duration>
+				<voice>1</voice>
+				<type>whole</type>
+				<staff>1</staff>
+			</note>
+			<barline location="right">
+				<bar-style>regular</bar-style>
+			</barline>
+		</measure>
+		<measure number="2">
+			<attributes>
+			</attributes>
+			<note>
+				<pitch>
+					<step>F</step>
+					<octave>5</octave>
+				</pitch>
+				<duration>128</duration>
+				<voice>1</voice>
+				<type>whole</type>
+				<staff>1</staff>
+			</note>
+			<barline location="right">
+				<bar-style>regular</bar-style>
+			</barline>
+		</measure>
+	</part>
+	<part id="P2">
+		<measure number="1">
+			<attributes>
+				<divisions>32</divisions>
+				<time>
+					<beats>4</beats>
+					<beat-type>4</beat-type>
+				</time>
+				<clef number="1">
+					<sign>F</sign>
+					<line>4</line>
+				</clef>
+			</attributes>
+			<note>
+				<pitch>
+					<step>E</step>
+					<octave>3</octave>
+				</pitch>
+				<duration>128</duration>
+				<voice>1</voice>
+				<type>whole</type>
+				<staff>1</staff>
+			</note>
+			<barline location="right">
+				<bar-style>regular</bar-style>
+			</barline>
+		</measure>
+		<measure number="2">
+			<attributes>
+			</attributes>
+			<note>
+				<pitch>
+					<step>A</step>
+					<octave>3</octave>
+				</pitch>
+				<duration>128</duration>
+				<voice>1</voice>
+				<type>whole</type>
+				<staff>1</staff>
+			</note>
+			<barline location="right">
+				<bar-style>regular</bar-style>
+			</barline>
+		</measure>
+	</part>
+	<part id="P3">
+		<measure number="1">
+			<attributes>
+				<divisions>32</divisions>
+				<time>
+					<beats>4</beats>
+					<beat-type>4</beat-type>
+				</time>
+				<clef number="1">
+					<sign>G</sign>
+					<line>2</line>
+				</clef>
+			</attributes>
+			<note>
+				<pitch>
+					<step>G</step>
+					<octave>4</octave>
+				</pitch>
+				<duration>128</duration>
+				<voice>1</voice>
+				<type>whole</type>
+				<staff>1</staff>
+			</note>
+			<barline location="right">
+				<bar-style>regular</bar-style>
+			</barline>
+		</measure>
+		<measure number="2">
+			<attributes>
+			</attributes>
+			<note>
+				<pitch>
+					<step>E</step>
+					<octave>4</octave>
+				</pitch>
+				<duration>32</duration>
+				<voice>1</voice>
+				<type>quarter</type>
+				<staff>1</staff>
+			</note>
+			<note>
+				<pitch>
+					<step>A</step>
+					<octave>4</octave>
+				</pitch>
+				<duration>32</duration>
+				<voice>1</voice>
+				<type>quarter</type>
+				<staff>1</staff>
+			</note>
+			<note>
+				<pitch>
+					<step>G</step>
+					<octave>4</octave>
+				</pitch>
+				<duration>32</duration>
+				<voice>1</voice>
+				<type>quarter</type>
+				<staff>1</staff>
+			</note>
+			<note>
+				<pitch>
+					<step>C</step>
+					<octave>5</octave>
+				</pitch>
+				<duration>32</duration>
+				<voice>1</voice>
+				<type>quarter</type>
+				<staff>1</staff>
+			</note>
+			<barline location="right">
+				<bar-style>regular</bar-style>
+			</barline>
+		</measure>
+	</part>
+	<part id="P4">
+		<measure number="1">
+			<attributes>
+				<divisions>32</divisions>
+				<time>
+					<beats>4</beats>
+					<beat-type>4</beat-type>
+				</time>
+				<clef number="1">
+					<sign>G</sign>
+					<line>2</line>
+				</clef>
+			</attributes>
+			<note>
+				<pitch>
+					<step>C</step>
+					<octave>4</octave>
+				</pitch>
+				<duration>128</duration>
+				<voice>1</voice>
+				<type>whole</type>
+				<staff>1</staff>
+			</note>
+			<barline location="right">
+				<bar-style>regular</bar-style>
+			</barline>
+		</measure>
+		<measure number="2">
+			<attributes>
+			</attributes>
+			<note>
+				<pitch>
+					<step>D</step>
+					<octave>4</octave>
+				</pitch>
+				<duration>128</duration>
+				<voice>1</voice>
+				<type>whole</type>
+				<staff>1</staff>
+			</note>
+			<barline location="right">
+				<bar-style>regular</bar-style>
+			</barline>
+		</measure>
+	</part>
+</score-partwise>
+

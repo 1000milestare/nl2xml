@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 2.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise>
+	<work>
+		<work-title>2notes</work-title>
+	</work>
+	<identification>
+		<encoding>
+			<software>nl2xml v 0.9 : Nightingale Notelist to MusicXML translator.  Notelist file version 2</software>
+		</encoding>
+	</identification>
+	<part-list>
+		<score-part id="P1">
+			<part-name>Part 1</part-name>
+		</score-part>
+	</part-list>
+	<part id="P1">
+	</part>
+</score-partwise>
+
