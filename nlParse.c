@@ -99,7 +99,7 @@ static Boolean ParseAndProcessStructComment(void);
 int main(int argc, char	**argv)
 {
 	FILE *theFile;
-	
+
 #ifdef THINK_C
 	/* Adjust size (default is 25 rows of 80 chars) and placement of console window */
 	console_options.top = 50;	console_options.left = 10;
@@ -108,9 +108,9 @@ int main(int argc, char	**argv)
 #if defined(THINK_C) || defined(__MWERKS__)
 	argc = ccommand(&argv);						/* provides Unix-like redirection of stdin and stdout */
 #endif
-	
+
 	(void)Initialize();
-	
+
 	if (argc>1)
 		theFile = fopen(argv[1], "r");
 	else
@@ -136,7 +136,7 @@ int main(int argc, char	**argv)
 void ParseAndProcessNotelist(FILE *file)
 {
 	char firstChar;
-	
+
 	if (!fgetsAllPlatform(gInBuf, MAX_LINELENGTH, file)) {
 		STATUS_PRINTF("ERROR: can't read first line of notelist.\n");
 		return;
@@ -154,11 +154,11 @@ void ParseAndProcessNotelist(FILE *file)
 	/* parse successive lines of input file */
 	while (fgetsAllPlatform(gInBuf, MAX_LINELENGTH, file)) {
 		gLineCount++;
-		
+
 		/* dispatch to specific parsing routines depending on first char */
 		sscanf(gInBuf, "%c", &firstChar);
 		if (firstChar=='\n' || firstChar=='\r') continue;				/* Ignore empty lines */
-		
+
 		switch (firstChar) {
 			case CLEF_CHAR:
 				if (!ParseAndProcessClef()) gErrorCount++;
@@ -202,7 +202,7 @@ void ParseAndProcessNotelist(FILE *file)
 				ReportParseFailure("ParseAndProcessNotelist");
 				gErrorCount++;
 		}
-		
+
 			if (gErrorCount>25) {
 				STATUS_PRINTF("FATAL ERROR (ParseAndProcessNotelist): TOO MANY ERRORS.\n");
 				return;
@@ -224,10 +224,10 @@ Boolean ParseAndProcessClef()
 
 	count = sscanf(gInBuf, "%*c%s%s", stfStr, typeStr);
 	if (count<2) goto Broken;
-	
+
 	if (!ExtractLong(stfStr, &along)) goto Broken;
 	clef.stf = along;
-	
+
 	if (!ExtractLong(typeStr, &along)) goto Broken;
 	clef.type = along;
 
@@ -255,16 +255,16 @@ Boolean ParseAndProcessKeySig()
 
 	count = sscanf(gInBuf, "%*c%s%s%s", stfStr, numAccStr, shpFltStr);
 	if (count<3) goto Broken;
-	
+
 	if (!ExtractLong(stfStr, &along)) goto Broken;
 	keySig.stf = along;
-	
+
 	if (!ExtractLong(numAccStr, &along)) goto Broken;
 	keySig.numAcc = along;
 
 	if (!(*shpFltStr=='#' || *shpFltStr=='b')) goto Broken;
 	keySig.shpFlt = *shpFltStr;
-	
+
 	/* Now handle the keySig as needed. */
 	ProcessKeySig(keySig);
 
@@ -289,22 +289,22 @@ Boolean ParseAndProcessTimeSig()
 
 	count = sscanf(gInBuf, "%*c%s%s%s%s", stfStr, numStr, denomStr, displStr);
 	if (count<3) goto Broken;
-	
+
 	if (!ExtractLong(stfStr, &along)) goto Broken;
 	timeSig.stf = along;
-	
+
 	if (!ExtractLong(numStr, &along)) goto Broken;
 	timeSig.num = along;
 
 	if (!ExtractLong(denomStr, &along)) goto Broken;
 	timeSig.denom = along;
-	
+
 	timeSig.displ = 1;												/* Default = normal timesig (n/d) */
 	if (count>3) {
 		if (!ExtractLong(displStr, &along)) goto Broken;
 		timeSig.displ = along;
 	}
-	
+
 	/* Now handle the timeSig as needed. */
 	ProcessTimeSig(timeSig);
 
@@ -357,19 +357,19 @@ Boolean ParseNote(ANOTE *pNote)
 
 	pNote->appearance = NORMAL_VIS;
 	pNote->numMods = 0;
-	
+
 	count = sscanf(gInBuf, "%c%s%s%s%s%s%s%s%s%s%s%s%s%s%s", &noteKind,
 					timeStr, voiceStr, partStr, staffStr, durStr, dotsStr,
 					noteNumStr, accStr, eAccStr, pDurStr, velStr, flagsStr,
 					penultStr, finalStr);
 	if (count<13) goto Broken;
-	
+
 	pNote->isGrace = (noteKind=='G');
 
 	if (!ExtractLong(timeStr, &along)) goto Broken;
 	if (!pNote->isGrace && NLERR_BADTIME(along)) goto Broken;				/* grace note time is ignored */
 	pNote->t = along;
-	
+
 	if (!ExtractLong(voiceStr, &along)) goto Broken;
 	if (NLERR_BADVOICE(along)) goto Broken;						/* NB: user, not internal, voice */
 	pNote->v = along;
@@ -377,7 +377,7 @@ Boolean ParseNote(ANOTE *pNote)
 	if (!ExtractLong(partStr, &along)) goto Broken;
 	if (NLERR_BADPART(along)) goto Broken;
 	pNote->npt = along;
-	
+
 	if (!ExtractLong(staffStr, &along)) goto Broken;
 	if (NLERR_BADSTAFF(along)) goto Broken;
 	pNote->stf = along;
@@ -446,9 +446,9 @@ Boolean ParseAndProcessNote()
 {
 	ANOTE		note;
 	Boolean	okay;
-	
+
 	size_t	modListSize;
-	
+
 	modListSize = sizeof(AMOD) * MAX_MODNRS;
 	note.modList = (AMOD *)malloc(modListSize);
 	if (!note.modList) {
@@ -457,8 +457,8 @@ Boolean ParseAndProcessNote()
 	}
 
 	okay = ParseNote(&note);
-	
-	/* Now handle the note as needed. */	
+
+	/* Now handle the note as needed. */
 	if (okay) {
 		if (note.isGrace) ProcessNote(note, FALSE, TRUE);
 		else              ProcessNote(note, FALSE, FALSE);
@@ -494,11 +494,11 @@ Boolean ParseRest(AREST *pRest)
 	count = sscanf(gInBuf, "%*c%s%s%s%s%s%s%s%s%s", timeStr, voiceStr, partStr, staffStr,
 					durStr, dotsStr, flagsStr, appearStr, modsStr);
 	if (count<8) goto Broken;
-	
+
 	if (!ExtractLong(timeStr, &along)) goto Broken;
 	if (NLERR_BADTIME(along)) goto Broken;
 	pRest->t = along;
-	
+
 	if (!ExtractLong(voiceStr, &along)) goto Broken;
 	if (NLERR_BADVOICE(along)) goto Broken;						/* NB: user, not internal, voice */
 	pRest->v = along;
@@ -506,7 +506,7 @@ Boolean ParseRest(AREST *pRest)
 	if (!ExtractLong(partStr, &along)) goto Broken;
 	if (NLERR_BADPART(along)) goto Broken;
 	pRest->npt = along;
-	
+
 	if (!ExtractLong(staffStr, &along)) goto Broken;
 	if (NLERR_BADSTAFF(along)) goto Broken;
 	pRest->stf = along;
@@ -547,7 +547,7 @@ Boolean ParseAndProcessRest()
 	AREST		rest;
 	Boolean	okay;
 	size_t	modListSize;
-	
+
 	modListSize = sizeof(AMOD) * MAX_MODNRS;
 	rest.modList = (AMOD *)malloc(modListSize);
 	if (!rest.modList) {
@@ -556,10 +556,10 @@ Boolean ParseAndProcessRest()
 	}
 
 	ANOTE note;
-	
+
 	okay = ParseRest(&rest);
-	
-	/* Now handle the rest as needed. */	
+
+	/* Now handle the rest as needed. */
 
 	if (okay) {
 		/* here's a hack call ProcessNote with our rest struct */
@@ -616,14 +616,14 @@ Boolean ParseAndProcessBarline()
 
 	count = sscanf(gInBuf, "%*c%s%s", timeStr, typeStr);
 	if (count<2) goto Broken;
-	
+
 	if (!ExtractLong(timeStr, &along)) goto Broken;
 	if (NLERR_BADTIME(along)) goto Broken;
 	barLine.t = along;
-	
+
 	if (!ExtractLong(typeStr, &along)) goto Broken;
 	barLine.type = along;
-	
+
 	/* Now handle the barline as needed. */
 	ProcessBarline(barLine);
 
@@ -648,19 +648,19 @@ Boolean ParseAndProcessTuplet()
 
 	count = sscanf(gInBuf, "%*c%s%s%s%s%s", voiceStr, partStr, numStr, denomStr, appearStr);
 	if (count<5) goto Broken;
-	
+
 	if (!ExtractLong(voiceStr, &along)) goto Broken;
 	tuplet.v = along;
 
 	if (!ExtractLong(partStr, &along)) goto Broken;
 	tuplet.npt = along;
-	
+
 	if (!ExtractLong(numStr, &along)) goto Broken;
 	tuplet.num = along;
 
 	if (!ExtractLong(denomStr, &along)) goto Broken;
 	tuplet.denom = along;
-	
+
 	if (!ExtractLong(appearStr, &along)) goto Broken;
 	tuplet.appearance = along;
 
@@ -688,11 +688,11 @@ Boolean ParseAndProcessDynamic()
 
 	count = sscanf(gInBuf, "%*c%s%s", stfStr, typeStr);
 	if (count<2) goto Broken;
-	
+
 	if (!ExtractLong(stfStr, &along)) goto Broken;
 	if (NLERR_BADSTAFF(along)) goto Broken;
 	dynamic.stf = along;
-	
+
 	if (!ExtractLong(typeStr, &along)) goto Broken;
 	dynamic.type = along;
 
@@ -721,19 +721,19 @@ Boolean ParseAndProcessText()
 
 	count = sscanf(gInBuf, "%*c%s%s%s%s", voiceStr, partStr, staffStr, codeStr);
 	if (count<4) goto Broken;
-	
+
 	if (!ExtractLong(voiceStr, &along)) goto Broken;
 	text.v = along;
 
 	if (!ExtractLong(partStr, &along)) goto Broken;
 	text.npt = along;
-	
+
 	if (!ExtractLong(staffStr, &along)) goto Broken;
 	text.stf = along;
 
 	if (!(*codeStr=='S' || *codeStr=='L')) goto Broken;
 	text.code = *codeStr;
-	
+
 	styleDigit = *(codeStr+1);
 	if (isdigit(styleDigit))
 		text.style = (short)styleDigit-(short)'0';				/* Should be 1 to 5 */
@@ -755,10 +755,10 @@ Boolean ParseAndProcessText()
 	 * now, we don't bother with efficiency.
 	 */
 	strcpy(text.textStr, textStr);
-	 
+
 	/* Now handle the text as needed. */
 	ProcessText(text);
-	
+
 	gTextCount++;
 	return TRUE;
 Broken:
@@ -803,7 +803,7 @@ Boolean ParseAndProcessTempoMark()
 	dotted = (dotOrEquals=='.');
 	startMetroPos += (dotted? 3 : 2);							/* Advance past equals sign */
 	sscanf(gInBuf+startMetroPos, "%s", metroStr);
-	
+
 	if (!ExtractLong(staffStr, &along)) goto Broken;
 	tempo.stf = along;
 
@@ -818,7 +818,7 @@ Boolean ParseAndProcessTempoMark()
 
 	/* Now handle the tempo mark as needed. */
 	ProcessTempoMark(tempo);
-	
+
 	gTempoCount++;
 	return TRUE;
 Broken:
@@ -839,10 +839,10 @@ Boolean ParseAndProcessBeam()
 
 	count = sscanf(gInBuf, "%*c%s%s%s", voiceStr, nptStr, beamCountStr);
 	if (count<3) goto Broken;
-	
+
 	if (!ExtractLong(voiceStr, &along)) goto Broken;
 	beam.v = along;
-	
+
 	if (!ExtractLong(nptStr, &along)) goto Broken;
 	beam.npt = along;
 
@@ -874,13 +874,13 @@ static char *ParseField(char *p, Boolean *pOkay)
 	short ans, number;
 
 	*pOkay = TRUE;
-	
+
 	/* Point to first non-whitespace char. If there's nothing following, do nothing. */
 	for (p++; *p; p++)
 		if (!isspace((int)*p)) break;
 	ans = sscanf(p, "%s", str);
 	if (ans<1) return NULL;
-	
+
 	if (strcmp(str, "delaccs")==0) {
 		gDelAccs = TRUE;
 		p += strlen(str);
@@ -966,19 +966,11 @@ static Boolean ParseAndProcessStructComment()
 	if (!okay) {
 		STATUS_PRINTF("ERROR (ParseAndProcessStructComment): the Notelist's header line contained unrecognized field(s).\n");
 	}
-	 
+
 Done:
 	return ProcessStructComment();
-	
+
 Broken:
 	ReportParseFailure("ParseAndProcessStructComment");
 	return FALSE;
-}
-
-
-void printfXMLComment(char *comment)
-{
-  printf("<!-- some comment");
-//  printf(comment);
-  printf("-->");
 }

@@ -11,7 +11,7 @@
 #define TRUE	1
 #define FALSE	0
 #ifndef THINK_C
-	#define Boolean unsigned char 
+	#define Boolean unsigned char
 #endif
 
 /* The following structs are related to but are not at all the same as Nightingale's
@@ -173,7 +173,7 @@ enum {								/* Notehead appearances: */
 #define MAXPARTS MAXSTAVES				/* Maximum number of parts */
 #define MAX_MODNRS 20					/* Max. modifiers on a note/grace note/rest */
 
-#define STATUS_PRINTF printfXMLComment			/* Print status/error information (perhaps to <stderr>) */
+#define STATUS_PRINTF printf			/* Print status/error information (perhaps to <stderr>) */
 
 #define NOTE_CHAR			'N'
 #define GRACE_CHAR		'G'
