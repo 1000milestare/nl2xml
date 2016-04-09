@@ -12,6 +12,10 @@ $ gcc -o nl2xml nl*.c
 
 Should also be easily imported into and build in the development enviroment of your choice.
 
+Building JavaScript version with Emscripten
+-------------------------------------------
+`emcc *.c -o nl2xml.html`
+
 Usage
 -----
 single file:
